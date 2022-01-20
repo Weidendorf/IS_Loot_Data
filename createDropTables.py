@@ -33,23 +33,23 @@ dungeonAreas = [
 
 ## filters corrupted data
 def isValid(zone: str, th: int, scroll: int, grouplead: int, groupsize: int):
-    valid = true
+    valid = True
     # Scroll only in scroll areas
     if (scroll > 0) and (not zone in scrollAreas):
-        valid = false
+        valid = False
     # Group Lead must be boolean
     if not grouplead in [0, 1]:
-        valid = false
+        valid = False
     # Groups can only participate in Dungeons
     if (groupsize > 1) and (not zone in dungeonAreas):
-        valid = false
+        valid = False
     # If we are missing at least 2 other people the person with highest dps gets 2 rolls aswell
     # Not captures -> we remove these cases
     if (groupsize < zonegroupsize.get(zone, 1) - 1) and (groupsize != 1):
-        valid = false
+        valid = False
     # We also do not know how loot in Cw is distributed -> ignore if 2 persons
-    if groupsize in zonegroupsizeexclude.get(Zone, []):
-        valid = false
+    if groupsize in zonegroupsizeexclude.get(zone, []):
+        valid = False
     return valid
 
 
