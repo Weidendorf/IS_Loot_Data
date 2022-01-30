@@ -41,9 +41,10 @@ class lootshow {
   updateView(self){
 	// Gets TH and scroll info
 	let th = parseFloat(document.getElementById("treasure").value)
-    let scroll = parseFloat(document.getElementById("scroll").value)
-	let modifier = 1*(1 + 0.03*(th + scroll))
-	let test = 1 + 0.03 * (th + scroll)
+    let loot = parseFloat(document.getElementById("scroll").value)
+	let n = Math.floor(loot)
+	let lootMult = n*(n+1)/(2*loot) + (n + 1) * (loot - n) / loot
+	let modifier = 1*(1 + 0.03*th)*lootMult
     let zoneSelector = document.getElementById("zone")
     let zonevalue = zoneSelector.value
     let msg = ''
@@ -126,7 +127,7 @@ class lootshow {
     // Update GPH
     let kph = document.getElementById("kph")
     let gph = document.getElementById("gph")
-    gph.innerText = numberWithCommas((zoneMarket * kph.value * (1+th*0.03+scroll*0.03) * (1 + 0.1*scroll)).toFixed(0))
+    gph.innerText = numberWithCommas((zoneMarket * kph.value * (1+th*0.03) * lootMult).toFixed(0))
     msg = JSON.stringify(dtable)
     //self.dom.innerText=msg
     self.dom.append(newdiv)
