@@ -40,10 +40,10 @@ class lootshow {
   }
   updateView(self){
 	// Gets TH and scroll info
-	let th = document.getElementById("treasure").value
-    let scroll = document.getElementById("scroll").value
+	let th = parseFloat(document.getElementById("treasure").value)
+    let scroll = parseFloat(document.getElementById("scroll").value)
 	let modifier = 1*(1 + 0.03*(th + scroll))
-	console.log(th)
+	let test = 1 + 0.03 * (th + scroll)
     let zoneSelector = document.getElementById("zone")
     let zonevalue = zoneSelector.value
     let msg = ''
